@@ -1,6 +1,15 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
+#include <Arduino.h>
+
+#define BAUD_RATE 115200
+#define TIMEOUTE 1
+
+#define ACKNOWLEDGE 'A'
+#define RELEASE 'R'
+#define START 'S'
+
 enum message
 {
     PC_MESSAGE_LED_BRIGHTNESS = 0,
@@ -10,7 +19,20 @@ enum message
     PC_MESSAGE_STOP
 };
 
-#define OK "S"
-#define UNKNOWN_MESSAGE "U"
+extern communication Com;
+
+class communication
+{
+private:
+    /* data */
+public:
+    communication();
+    ~communication();
+
+    bool communication::available();
+    void communication::setup(uint32_t baud_rate, uint8_t timeoute);
+    void communication::release(String* message);
+    void communication::handler();
+};
 
 #endif // COMMUNICATION_H
