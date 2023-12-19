@@ -16,7 +16,7 @@ communication::communication(){
 }
 
 communication::~communication(){
-    Serial.end();
+    // Serial.end();
 }
 
 void communication::setup(uint32_t baud_rate, uint8_t timeoute){

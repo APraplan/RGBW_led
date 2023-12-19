@@ -8,14 +8,11 @@ void colorFill(CRGBW c, CRGBW *leds, uint8_t numLeds){
 
 void rainbow(CRGBW *leds, uint8_t numLeds){
 	static uint8_t hue;
-    static uint8_t counter;
 
-    if(counter++ % 4 == 0){
-        for(int i = 0; i < numLeds; i++){
-		    leds[i] = CHSV((i * 256 / numLeds) + hue, 255, 255);
-	    }
-	    hue++;
+    for(int i = 0; i < numLeds; i++){
+        leds[i] = CHSV((i * 256 / numLeds) + hue, 255, 255);
     }
+    hue++;
 }
 
 void lightning(CRGBW *leds, uint8_t numLeds){
