@@ -1,0 +1,16 @@
+#ifndef COMMUNICATION_H
+#define COMMUNICATION_H
+
+enum message
+{
+    PC_MESSAGE_LED_BRIGHTNESS = 0,
+    PC_MESSAGE_LED_COLOR,
+
+    PC_MESSAGE_LOOP,
+    PC_MESSAGE_STOP
+};
+
+#define OK "S"
+#define UNKNOWN_MESSAGE "U"
+
+#endif // COMMUNICATION_H

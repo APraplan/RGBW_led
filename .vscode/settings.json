@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "fastled_rgbw.h": "c"
+    },
+    "cmake.sourceDirectory": "C:/Users/APrap/Documents/PlatformIO/Projects/Test_one/lib/FastLED-3.6.0"
+}
