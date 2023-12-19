@@ -9,10 +9,7 @@
 #include <ISR_Timer.h>
 
 #include "LED_RGBW.h"
-// #include "animations.h"
 #include "communication.h"
-#include "../lib/FastLED-3.6.0/src/FastLED.h"
-#include "../lib/FastLED-3.6.0/src/FastLED_RGBW.h"
 
 #define TIMER_INTERVAL_MS 5L
 

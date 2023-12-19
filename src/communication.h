@@ -19,8 +19,6 @@ enum message
     PC_MESSAGE_STOP
 };
 
-extern communication Com;
-
 class communication
 {
 private:
@@ -29,10 +27,12 @@ public:
     communication();
     ~communication();
 
-    bool communication::available();
-    void communication::setup(uint32_t baud_rate, uint8_t timeoute);
-    void communication::release(String* message);
-    void communication::handler();
+    bool available();
+    void setup(uint32_t baud_rate, uint8_t timeoute);
+    void release(String* message);
+    void handler();
 };
+
+extern communication Com;
 
 #endif // COMMUNICATION_H
