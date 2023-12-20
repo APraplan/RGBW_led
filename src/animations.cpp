@@ -9,7 +9,7 @@ void colorFill(CRGBW c, CRGBW *leds, uint8_t numLeds){
 void rainbow(CRGBW *leds, uint8_t numLeds){
 	static uint8_t hue;
 
-    for(int i = 0; i < numLeds; i++){
+    for(uint16_t i = 0; i < numLeds; i++){
         leds[i] = CHSV((i * 256 / numLeds) + hue, 255, 255);
     }
     hue++;

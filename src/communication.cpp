@@ -1,4 +1,5 @@
 #include "communication.h"
+#include "LED_RGBW.h"
 
 communication Com;
 
@@ -39,7 +40,7 @@ void communication::release(String* message){
     case PC_MESSAGE_LED_BRIGHTNESS:
     {
       int brightness = atoi(message->substring(1, 4).c_str());
-    //   FastLED.setBrightness(brightness);
+      LED_RGBW.setBrightness(brightness);
       break;
     }
 
@@ -49,17 +50,23 @@ void communication::release(String* message){
       int green = atoi(message->substring(4, 7).c_str());
       int blue = atoi(message->substring(7, 10).c_str());
       int white = atoi(message->substring(10, 13).c_str());
-    //   colorFill(CRGBW(red, green, blue, white), leds, NUM_LEDS);
+      LED_RGBW.setColor(CRGBW(red, green, blue, white));
       break;
     }
 
-    case PC_MESSAGE_LOOP:
-      ;
+    case PC_MESSAGE_SPEED:
+    {
+      int speed = atoi(message->substring(1, 4).c_str());
+      LED_RGBW.setFPS(speed);
       break;
+    }
 
-    case PC_MESSAGE_STOP:
-      ;
+    case PC_MESSAGE_ANIMATION:
+    {
+      animationType animation = (animationType) atoi(message->substring(1, 2).c_str());
+      LED_RGBW.setAnimation(animation);
       break;
+    }
 
     default:
       break;

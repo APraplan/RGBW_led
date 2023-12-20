@@ -25,7 +25,7 @@ void ledController::setup(){
     FastLED.clear(true);
   
     ITimer1.init();
-    ITimer1.attachInterruptInterval(PERIOD_MIN, animationHandler);
+    ITimer1.attachInterrupt(FPS_MAX, animationHandler);
 
 }
 
@@ -43,16 +43,19 @@ void ledController::animate(){
         lightning(m_leds, NUM_LEDS);
         break;
     case OFF:
-        FastLED.clear(true);
-        break;
     default:
         break;
     }
 }
 
-void ledController::setSpeed(uint8_t speed){
-    uint32_t period = map(speed, 0, 100, 1000, PERIOD_MIN);
-    ITimer1.setInterval(period, animationHandler);
+void ledController::setFPS(float fps){
+
+    if(fps > FPS_MAX)
+        fps = FPS_MAX;
+    else if(fps < 0)
+        fps = 0;
+
+    ITimer1.setFrequency((float) fps, animationHandler);
 }
 
 void ledController::setBrightness(uint8_t brightness){
@@ -64,7 +67,17 @@ uint8_t ledController::getBrightness(){
 }
 
 void ledController::clear(){
+    m_animation = OFF;
     FastLED.clear(true);
+}
+
+void ledController::setColor(CRGBW c){
+    m_animation = OFF;
+    colorFill(c, m_leds, NUM_LEDS);
+}
+
+void ledController::setAnimation(animationType animation){
+    m_animation = animation;
 }
 
 
